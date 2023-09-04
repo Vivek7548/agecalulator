@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Age Calculator</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        body {
+    font-family: Arial, sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background: linear-gradient(to bottom, #22a7f0, #3498db);
+    margin: 0;
+}
+
+.container {
+    text-align: center;
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+h1 {
+    color: #3498db;
+}
+
+label {
+    display: block;
+    margin-top: 10px;
+    color: #666;
+}
+
+input {
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    width: 100%;
+    margin-top: 5px;
+}
+
+button {
+    margin-top: 10px;
+    padding: 10px 20px;
+    background-color: #3498db;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #2180bf;
+}
+
+#result {
+    margin-top: 20px;
+    font-size: 18px;
+    font-weight: bold;
+    color: #333;
+}
+
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <h1>Age Calculator</h1>
+        <label for="name">Your Name:</label>
+        <input type="text" id="name" placeholder="Enter your name">
+
+        <label for="birthdate">Your Birthdate:</label>
+        <input type="date" id="birthdate">
+
+        <button id="calculate-btn">Calculate Age</button>
+
+        <div id="result"></div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+<script>
+    document.getElementById('calculate-btn').addEventListener('click', calculateAge);
+
+function calculateAge() {
+    const name = document.getElementById('name').value;
+    const birthdate = new Date(document.getElementById('birthdate').value);
+    const today = new Date();
+
+    const timeDifference = today.getTime() - birthdate.getTime();
+    const ageDate = new Date(timeDifference);
+
+    const years = Math.abs(ageDate.getUTCFullYear() - 1970);
+    const months = ageDate.getUTCMonth();
+    const days = ageDate.getUTCDate() - 1;
+
+    const resultText = `Hi, ${name}, you are ${days} Days, ${months} Months, & ${years} years old as of today.`;
+    document.getElementById('result').textContent = resultText;
+}
+
+</script>
+</html>
